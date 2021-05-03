@@ -12,6 +12,7 @@ export const CartItemModel = types.model("CartItemModel", {
 export const CartModel = types
   .model("CartModel", {
     cartItems: types.optional(types.array(CartItemModel), []),
+    loading: types.optional(types.boolean, false),
   })
   .views((self) => ({
     quantityById(id) {
@@ -36,6 +37,7 @@ export const CartModel = types
   .actions((self) => ({
     getAlbumInCart: flow(function* getAlbumInCart() {
       try {
+        self.loading = true;
         const res = yield axios.get(URL_LIST, {
           params: {
             list: self.itemsIdList,
@@ -44,6 +46,8 @@ export const CartModel = types
         self.putAlbumsToItems(res.data.albums);
       } catch (error) {
         throw error;
+      } finally {
+        self.loading = false;
       }
     }),
     addNewAlbumToCart(id) {

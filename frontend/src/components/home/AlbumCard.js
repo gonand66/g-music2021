@@ -2,7 +2,7 @@ import React from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
 import { numberWithComma } from "../../utils/formatHelper";
-import { BuyButton } from "../common";
+import { BuyButton, Loading } from "../common";
 
 function AlbumCard(prop) {
   const { _id, name, artist, price, imgUrl } = prop.album;
@@ -33,7 +33,7 @@ function AlbumCard(prop) {
 
   return (
     <CardContainer onClick={() => history.push("/album/" + _id)}>
-      <CardImg width={250} src={imgUrl} /> 
+      <CardImg width={250} src={imgUrl} alt={name} />
       {renderDetail()}
     </CardContainer>
   );

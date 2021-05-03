@@ -36,6 +36,8 @@ function CategorySection() {
 export default CategorySection;
 
 const CategoryButton = styled.button`
+  height: 80px;
+  width: 80px;
   border-radius: 50%;
   font-size: 15px;
   margin: 3%;
@@ -43,14 +45,10 @@ const CategoryButton = styled.button`
   ${(props) =>
     props.active
       ? css`
-          height: 85px;
-          width: 85px;
           border: 7px solid greenyellow;
           background: linear-gradient(to right, #add100, #7b920a);
         `
       : css`
-          height: 80px;
-          width: 80px;
           border: none;
           background: linear-gradient(to right, #be93c5, #7bc6cc);
         `}

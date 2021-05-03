@@ -6,18 +6,15 @@ import { AlbumListContext } from "../../models";
 import { Loading } from "../common";
 
 const AlbumsList = observer(() => {
-  const { getAlbums, list } = useContext(AlbumListContext);
-  const [loading, setLoading] = useState(false);
+  const { getAlbums, list, loading } = useContext(AlbumListContext);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setLoading(true);
         await getAlbums();
       } catch (error) {
         console.log("Albumslist bug==>", error);
       } finally {
-        setLoading(false);
       }
     };
     fetchData();

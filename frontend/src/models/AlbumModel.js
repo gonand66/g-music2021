@@ -11,6 +11,7 @@ export const AlbumModel = types
     category: types.optional(types.array(types.string), []),
     releaseYear: types.optional(types.string, ""),
     price: types.optional(types.number, 0),
+    loading: types.optional(types.boolean, false),
   })
   .views((self) => ({
     get totalPrice() {
@@ -20,10 +21,13 @@ export const AlbumModel = types
   .actions((self) => ({
     getOneAlbums: flow(function* getOneAlbums(id) {
       try {
+        self.loading = true;
         const res = yield axios.get(URL + "/" + id);
         return res.data.album;
       } catch (error) {
         throw error;
+      } finally {
+        self.loading = false;
       }
-    })
+    }),
   }));

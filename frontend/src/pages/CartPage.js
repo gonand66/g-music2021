@@ -13,20 +13,17 @@ const CartPage = observer(() => {
     quantityById,
     cartItems,
     allTotal,
+    loading,
     getCartItemFromStorage,
   } = useContext(CartContext);
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     getCartItemFromStorage();
     const fetchData = async () => {
       try {
-        setLoading(true);
         await getAlbumInCart();
       } catch (error) {
         console.log("CartPage bug==>", error);
-      } finally {
-        setLoading(false);
       }
     };
     fetchData();

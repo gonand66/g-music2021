@@ -10,7 +10,7 @@ const AlbumDetailPage = observer(() => {
   const { id } = useParams();
   const [album, setAlbum] = useState(AlbumModel.create({}));
   const { quantityById } = useContext(CartContext);
-  const { name, artist, releaseYear, category, imgUrl, price } = album;
+  const { name, artist, releaseYear, category, imgUrl, price, loading } = album;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,7 +34,7 @@ const AlbumDetailPage = observer(() => {
     <>
       <NavBar noBanner />
       <Container>
-        {album.name ? (
+        {!loading ? (
           <>
             <Image src={imgUrl} />
             <DetailBox>
