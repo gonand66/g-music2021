@@ -72,7 +72,7 @@ const AlbumDetailPage = observer(() => {
 export default AlbumDetailPage;
 
 const Container = styled.div`
-  min-height: 70vh;
+  min-height: 80vh;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
